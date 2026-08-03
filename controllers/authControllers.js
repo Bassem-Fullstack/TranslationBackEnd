@@ -119,7 +119,7 @@ const accessToken = jwt.sign(
 
   process.env.Access_Token_Secret ,
   
-  {expiresIn : "3m"}
+  {expiresIn : "1m"}
 
 
 )
