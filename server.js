@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 5000
 const connected = require("./config/db")
 
 
-await connected();
+connected().catch((err) => console.log("DB connection error:", err));
 
 app.use(express.json())
 
