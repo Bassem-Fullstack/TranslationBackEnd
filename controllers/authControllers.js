@@ -137,7 +137,7 @@ res.cookie("refreshToken" , refreshToken , {
 
 httpOnly : true ,
 
-sameSite : "strict" ,
+sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
 
 secure : process.env.NODE_ENV === "production" ,
 
@@ -176,6 +176,9 @@ const handleRefreshToken = asyncHandler ( async ( req , res) => {
 
 const getRefreshToken = req.cookies.refreshToken 
 
+console.log("Cookies:", req.cookies);
+
+console.log("Refresh Token:", getRefreshToken);
 
 if(!getRefreshToken) {
 
@@ -226,9 +229,10 @@ res.status(200).json({
 
 sucess : true ,
 
-AccessToken : accessTokenAgain // بنبعت بقي لفروند اند الرد بتاعنا اللى هو اكسيس توكين عشان لما مستخدم اكسيس توكين بتاعة يخلص اللى هو مدتة ربع ساعة يبدأ بقي متصفح يجددلوة تلقائي توكين جديد في كوكيز
+accessToken : accessTokenAgain // بنبعت بقي لفروند اند الرد بتاعنا اللى هو اكسيس توكين عشان لما مستخدم اكسيس توكين بتاعة يخلص اللى هو مدتة ربع ساعة يبدأ بقي متصفح يجددلوة تلقائي توكين جديد في كوكيز
 
 })
+
 
 
 })
