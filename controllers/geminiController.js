@@ -37,7 +37,7 @@ if( !text || !targetLanguage ) {
 
 
 
-const model = genAI.getGenerativeModel({ model : "gemini-3.5-flash" })
+const model = genAI.getGenerativeModel({ model : "gemini-3.5-flash-lite" })
 
 // بقولوة هنا اشتغل على اسرع موديل عندك بحيث ترد على مستخدم بسرعة لما يجي يترجم يعني تترجملوة كلمة بسرعة متبقاش بطيئ عشان كدة استخدمت موديل فلاش اسرع حاجة بدل ما المستخدم يقعد ينتظر كتير
 
