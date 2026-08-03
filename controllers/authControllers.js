@@ -137,7 +137,7 @@ res.cookie("refreshToken" , refreshToken , {
 
 httpOnly : true ,
 
-sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
 
 secure : process.env.NODE_ENV === "production" ,
 
@@ -148,7 +148,7 @@ maxAge : 128 * 24 * 60 * 60 * 1000
 
 res.status(200).json({ 
     
-sucess : true  ,  
+success : true  ,  
 
 accessToken ,
 
@@ -176,9 +176,6 @@ const handleRefreshToken = asyncHandler ( async ( req , res) => {
 
 const getRefreshToken = req.cookies.refreshToken 
 
-console.log("Cookies:", req.cookies);
-
-console.log("Refresh Token:", getRefreshToken);
 
 if(!getRefreshToken) {
 
@@ -187,8 +184,18 @@ if(!getRefreshToken) {
 }
 
 
-const decode = jwt.verify( getRefreshToken , process.env.Refresh_Token_Secret)
+let decode;
 
+try {
+
+  decode = jwt.verify(getRefreshToken, process.env.Refresh_Token_Secret);
+}
+
+ catch (err) {
+
+  return res.status(401).json({ message: "Invalid or expired refresh token, please login again" });
+
+}
 
 // بفك توكين واجيب الايدي متخزن جواة توكين وافكوة واقارنوة بالايدي موجود عندي في داتا بيز لو الايدي سليم ومتخزن عندي تمام خلاص جددلوة توكين بتاعوة اكسيس كل ربع ساعة
 
@@ -227,7 +234,7 @@ const accessTokenAgain = jwt.sign(
 
 res.status(200).json({
 
-sucess : true ,
+success : true ,
 
 accessToken : accessTokenAgain // بنبعت بقي لفروند اند الرد بتاعنا اللى هو اكسيس توكين عشان لما مستخدم اكسيس توكين بتاعة يخلص اللى هو مدتة ربع ساعة يبدأ بقي متصفح يجددلوة تلقائي توكين جديد في كوكيز
 
@@ -271,7 +278,7 @@ res.clearCookie("refreshToken" , {
 
 httpOnly : true ,
 
-sameSite : "strict" ,
+sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
 
 secure : process.env.NODE_ENV==="production"
 
