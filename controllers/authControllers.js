@@ -137,9 +137,13 @@ res.cookie("refreshToken" , refreshToken , {
 
 httpOnly : true ,
 
-sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
+// sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
 
-secure : process.env.NODE_ENV === "production" ,
+// secure : process.env.NODE_ENV === "production" ,
+
+  sameSite: "none",
+  
+  secure: true,
 
 maxAge : 128 * 24 * 60 * 60 * 1000
 
@@ -278,10 +282,13 @@ res.clearCookie("refreshToken" , {
 
 httpOnly : true ,
 
-sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
+// sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ مطابقة لـ login
 
-secure : process.env.NODE_ENV==="production"
+// secure : process.env.NODE_ENV==="production"
 
+sameSite : "none" ,
+
+secure : true
 
 })
 
