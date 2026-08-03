@@ -91,7 +91,9 @@ res.status(200).json({
 
  success : true ,
  
- saveTransaltion 
+ saveTransaltion ,
+
+ translation // دة الرد بتاع ai عشان ناخدوة ونخزنوة عندنا في ستيت على طول عشان يستجيب ويبقي سريع
 
 })
 
