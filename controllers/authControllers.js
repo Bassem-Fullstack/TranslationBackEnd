@@ -119,7 +119,7 @@ const accessToken = jwt.sign(
 
   process.env.Access_Token_Secret ,
   
-  {expiresIn : "15m"}
+  {expiresIn : "3m"}
 
 
 )
@@ -142,7 +142,7 @@ httpOnly : true ,
 // secure : process.env.NODE_ENV === "production" ,
 
   sameSite: "none",
-  
+
   secure: true,
 
 maxAge : 128 * 24 * 60 * 60 * 1000
